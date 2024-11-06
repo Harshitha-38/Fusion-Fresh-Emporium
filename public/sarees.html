@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Sarees</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .product-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .product-item p {
+            font-size: 14px;
+            color: #777;
+        }
+        .product-item button {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .product-item button:hover {
+            background-color: #e68900;
+        }
+        .cart-box {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            background-color: black;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .cart-icon {
+            margin-right: 5px;
+        }
+        .cart-count {
+            background-color: red;
+            border-radius: 50%;
+            padding: 3px 7px;
+            font-size: 14px;
+        }
+        .cart-box-medium {
+            display: none;
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            z-index: 2000;
+            transition: all 0.3s ease-in-out;
+        }
+        .cart-box-medium.active {
+            display: block;
+        }
+        .cart-box-medium h2 {
+            margin-top: 0;
+        }
+        .cart-box-medium .close-cart {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+            color: #aaa;
+        }
+        .cart-box-medium .cart-item {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+        .buy-now-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .buy-now-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Women's Sarees Collection</h1>
+    </div>
+
+    <div class="product-grid">
+        <!-- Adding 10 sample sarees -->
+        <div class="product-item">
+            <img src="https://cdn.shopify.com/s/files/1/0592/3117/4816/files/Types_of_Bandhani_Sarees_in_India_480x480.jpg?v=1664647140" alt="Saree 1">
+            <h3>Saree 1</h3>
+            <p>$50.00</p>
+            <button onclick="addToCart('Saree 1', 50.00)">Add to Cart</button>
+        </div>
+        <div class="product-item">
+            <img src="https://www.sudarshansaree.com/cdn/shop/products/ETW14752A.jpg?v=1663013493" alt="Saree 2">
+            <h3>Saree 2</h3>
+            <p>$60.00</p>
+            <button onclick="addToCart('Saree 2', 60.00)">Add to Cart</button>
+        </div>
+        <div class="product-item">
+            <img src="https://i.pinimg.com/236x/e8/ba/da/e8bada80ae2e9751f92ee46776be3966.jpg" alt="Saree 3">
+            <h3>Saree 3</h3>
+            <p>$55.00</p>
+            <button onclick="addToCart('Saree 3', 55.00)">Add to Cart</button>
+        </div>
+        <div class="product-item">
+            <img src="https://www.sudarshansaree.com/cdn/shop/products/ETW14765A.jpg?v=1663013422" alt="Saree 4">
+            <h3>Saree 4</h3>
+            <p>$70.00</p>
+            <button onclick="addToCart('Saree 4', 70.00)">Add to Cart</button>
+        </div>
+        <div class="product-item">
+            <img src="https://afbrand.s3.ap-south-1.amazonaws.com/images/items/Pari-Pink-Sophisticated-Kanjivaram-Silk-Saree-With-Pure-Zari-Weaving-1_9f37299.webp" alt="Saree 5">
+            <h3>Saree 5</h3>
+            <p>$65.00</p>
+            <button onclick="addToCart('Saree 5', 65.00)">Add to Cart</button>
+        </div>
+        <div class="product-item">
+            <img src="https://www.koskii.com/cdn/shop/products/koskii-peacock-blue-swarovski-semi-crepe-designer-saree-saus0021891_peacock_blue_1_1080x.jpg?v=1719835012" alt="Saree 6">
+            <h3>Saree 6</h3>
+            <p>$80.00</p>
+            <button onclick="addToCart('Saree 6', 80.00)">Add to Cart</button>
+        </div>
+        <div class="product-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbA_5EQHNsLlx5N5lJqw_heDkfyEDGpnwWiA&s" alt="Saree 7">
+            <h3>Saree 7</h3>
+            <p>$45.00</p>
+            <button onclick="addToCart('Saree 7', 45.00)">Add to Cart</button>
+        </div>
+        <div class="product-item">
+            <img src="https://www.lovesummer.in/cdn/shop/files/GypsySummer1938.jpg?v=1712860510&width=1080" alt="Saree 8">
+            <h3>Saree 8</h3>
+            <p>$90.00</p>
+            <button onclick="addToCart('Saree 8', 90.00)">Add to Cart</button>
+        </div>
+        <div class="product-item">
+            <img src="https://www.taneira.com/dw/image/v2/BKMH_PRD/on/demandware.static/-/Sites-Taneira-product-catalog/default/dw15e9e3f5/images/Taneira/Catalog/SAPH01AA0413_1.jpg?sw=480&sh=728" alt="Saree 9">
+            <h3>Saree 9</h3>
+            <p>$75.00</p>
+            <button onclick="addToCart('Saree 9', 75.00)">Add to Cart</button>
+        </div>
+        <div class="product-item">
+            <img src="https://pictures.kartmax.in/cover/live/600x800/quality=6/sites/9s145MyZrWdIAwpU0JYS/product-images/amazing_dark_purple_saree_1726916935970002_2.jpg" alt="Saree 10">
+            <h3>Saree 10</h3>
+            <p>$85.00</p>
+            <button onclick="addToCart('Saree 10', 85.00)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="cart-box" id="cart-box">
+        <span class="cart-icon">🛒</span>
+        Cart <span class="cart-count" id="cart-count">0</span>
+    </div>
+
+    <div class="cart-box-medium" id="cart-box-medium">
+        <span class="close-cart" onclick="toggleCartMediumBox()">&times;</span>
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <h3>Total: $<span id="total-price">0.00</span></h3>
+        <!-- Added Buy Now Button -->
+        <button class="buy-now-btn" onclick="buyNow()">Buy Now</button>
+        
+        
+    </div>
+
+    <script>
+let cart = [];
+let total = 0;
+
+function addToCart(itemName, itemPrice) {
+const existingItem = cart.find(item => item.name === itemName);
+
+if (existingItem) {
+    // If item already in cart, increment quantity
+    existingItem.quantity++;
+} else {
+    // If item is new, add to cart with quantity of 1
+    const item = {
+        name: itemName,
+        price: itemPrice,
+        quantity: 1 // Initial quantity set to 1
+    };
+    cart.push(item);
+}
+
+total += itemPrice; // Add price to total
+updateCartDisplay();
+}
+
+function updateCartDisplay() {
+document.getElementById('cart-count').innerText = cart.length;
+document.getElementById('total-price').innerText = total.toFixed(2);
+
+const cartItemsContainer = document.getElementById('cart-items');
+cartItemsContainer.innerHTML = ''; // Clear existing items
+
+cart.forEach((item, index) => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'cart-item';
+    itemDiv.innerHTML = `
+        <span>${item.name} - $${item.price.toFixed(2)} (Qty: <span id="quantity-${index}">${item.quantity}</span>)</span>
+        <button onclick="changeQuantity(${index}, 1)">+</button>
+        <button onclick="changeQuantity(${index}, -1)">-</button>
+        <button onclick="removeItem(${index})">Remove</button>
+    `;
+    cartItemsContainer.appendChild(itemDiv);
+});
+}
+
+function changeQuantity(index, delta) {
+const item = cart[index];
+item.quantity += delta;
+
+if (item.quantity <= 0) {
+    removeItem(index);
+} else {
+    // Adjust total based on the change in quantity
+    total += item.price * delta;
+}
+updateCartDisplay();
+}
+
+function removeItem(index) {
+const item = cart[index];
+total -= item.price * item.quantity; // Subtract the total price of the item
+cart.splice(index, 1); // Remove item from cart
+updateCartDisplay();
+}
+
+function toggleCartMediumBox() {
+const cartBoxMedium = document.getElementById('cart-box-medium');
+cartBoxMedium.classList.toggle('active');
+}
+
+document.getElementById('cart-box').addEventListener('click', function() {
+toggleCartMediumBox();
+});
+
+function buyNow() {
+// Get the total cart amount
+const totalAmount = total.toFixed(2); // Assuming 'total' is your cart total
+
+// Redirect to qr.html with the total as a query parameter
+window.location.href = `qr.html?total=${totalAmount}`;
+}
+    </script>
+
+</body>
+</html>

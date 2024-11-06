@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegetables, Kitchen & Beauty Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .product-item {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        p {
+            color: #777;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .cart-box {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            background-color: black;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .cart-icon {
+            margin-right: 5px;
+        }
+        .cart-count {
+            background-color: red;
+            border-radius: 50%;
+            padding: 3px 7px;
+            font-size: 14px;
+        }
+        .cart-box-medium {
+            display: none;
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            z-index: 2000;
+            transition: all 0.3s ease-in-out;
+        }
+        .cart-box-medium.active {
+            display: block;
+        }
+        .cart-box-medium h2 {
+            margin-top: 0;
+        }
+        .cart-box-medium .close-cart {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+            color: #aaa;
+        }
+        .cart-box-medium .cart-item {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+        .buy-now-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .buy-now-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<div class="header">
+  <h1>Vegetables, Kitchen & Beauty Products</h1>
+</div>
+
+<div class="product-grid">
+<div class="product-item">
+  <img src="https://image-url.com/blender.jpg" alt="High-Speed Blender">
+  <h2>High-Speed Blender</h2>
+  <p>Price: $89.99</p>
+  <p>Description: A powerful blender perfect for smoothies and soups.</p>
+  <button onclick="addToCart('High-Speed Blender', 89.99)">Add to Cart</button>
+</div>
+<div class="product-item">
+  <img src="https://image-url.com/knife-set.jpg" alt="Chef Knife Set">
+  <h2>Chef Knife Set</h2>
+  <p>Price: $45.99</p>
+  <p>Description: A premium knife set for all your cutting needs.</p>
+  <button onclick="addToCart('Chef Knife Set', 45.99)">Add to Cart</button>
+</div>
+<!-- Additional Kitchen Products -->
+<div class="product-item">
+  <img src="https://image-url.com/cutting-board.jpg" alt="Bamboo Cutting Board">
+  <h2>Bamboo Cutting Board</h2>
+  <p>Price: $19.99</p>
+  <p>Description: Eco-friendly bamboo cutting board, perfect for food prep.</p>
+  <button onclick="addToCart('Bamboo Cutting Board', 19.99)">Add to Cart</button>
+</div>
+<div class="product-item">
+  <img src="https://image-url.com/pressure-cooker.jpg" alt="Electric Pressure Cooker">
+  <h2>Electric Pressure Cooker</h2>
+  <p>Price: $79.99</p>
+  <p>Description: Versatile electric pressure cooker for quick meals.</p>
+  <button onclick="addToCart('Electric Pressure Cooker', 79.99)">Add to Cart</button>
+</div>
+<div class="product-item">
+  <img src="https://image-url.com/food-processor.jpg" alt="Food Processor">
+  <h2>Food Processor</h2>
+  <p>Price: $129.99</p>
+  <p>Description: Efficient food processor for chopping, slicing, and mixing.</p>
+  <button onclick="addToCart('Food Processor', 129.99)">Add to Cart</button>
+</div>
+<div class="product-item">
+  <img src="https://image-url.com/mixing-bowls.jpg" alt="Mixing Bowl Set">
+  <h2>Mixing Bowl Set</h2>
+  <p>Price: $24.99</p>
+  <p>Description: Set of durable mixing bowls for all your baking needs.</p>
+  <button onclick="addToCart('Mixing Bowl Set', 24.99)">Add to Cart</button>
+</div>
+<div class="product-item">
+  <img src="https://image-url.com/slow-cooker.jpg" alt="Slow Cooker">
+  <h2>Slow Cooker</h2>
+  <p>Price: $59.99</p>
+  <p>Description: Perfect for making hearty stews and casseroles.</p>
+  <button onclick="addToCart('Slow Cooker', 59.99)">Add to Cart</button>
+</div>
+<div class="product-item">
+  <img src="https://image-url.com/spiralizer.jpg" alt="Vegetable Spiralizer">
+  <h2>Vegetable Spiralizer</h2>
+  <p>Price: $29.99</p>
+  <p>Description: Create healthy veggie noodles with this easy-to-use spiralizer.</p>
+  <button onclick="addToCart('Vegetable Spiralizer', 29.99)">Add to Cart</button>
+</div>
+<div class="product-item">
+  <img src="https://image-url.com/air-fryer.jpg" alt="Air Fryer">
+  <h2>Air Fryer</h2>
+  <p>Price: $99.99</p>
+  <p>Description: Healthy frying option, cooks food with little to no oil.</p>
+  <button onclick="addToCart('Air Fryer', 99.99)">Add to Cart</button>
+</div>
+<div class="product-item">
+  <img src="https://image-url.com/whisk-set.jpg" alt="Whisk Set">
+  <h2>Whisk Set</h2>
+  <p>Price: $14.99</p>
+  <p>Description: A set of versatile whisks for mixing and beating.</p>
+  <button onclick="addToCart('Whisk Set', 14.99)">Add to Cart</button>
+</div>
+<div class="cart-box" id="cart-box">
+  <span class="cart-icon">🛒</span>
+  Cart <span class="cart-count" id="cart-count">0</span>
+</div>
+
+<div class="cart-box-medium" id="cart-box-medium">
+  <span class="close-cart" onclick="toggleCartMediumBox()">&times;</span>
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <h3>Total: $<span id="total-price">0.00</span></h3>
+  <!-- Added Buy Now Button -->
+  <button class="buy-now-btn" onclick="buyNow()">Buy Now</button>
+  
+  
+</div>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(itemName, itemPrice) {
+const existingItem = cart.find(item => item.name === itemName);
+
+if (existingItem) {
+// If item already in cart, increment quantity
+existingItem.quantity++;
+} else {
+// If item is new, add to cart with quantity of 1
+const item = {
+  name: itemName,
+  price: itemPrice,
+  quantity: 1 // Initial quantity set to 1
+};
+cart.push(item);
+}
+
+total += itemPrice; // Add price to total
+updateCartDisplay();
+}
+
+function updateCartDisplay() {
+document.getElementById('cart-count').innerText = cart.length;
+document.getElementById('total-price').innerText = total.toFixed(2);
+
+const cartItemsContainer = document.getElementById('cart-items');
+cartItemsContainer.innerHTML = ''; // Clear existing items
+
+cart.forEach((item, index) => {
+const itemDiv = document.createElement('div');
+itemDiv.className = 'cart-item';
+itemDiv.innerHTML = `
+  <span>${item.name} - $${item.price.toFixed(2)} (Qty: <span id="quantity-${index}">${item.quantity}</span>)</span>
+  <button onclick="changeQuantity(${index}, 1)">+</button>
+  <button onclick="changeQuantity(${index}, -1)">-</button>
+  <button onclick="removeItem(${index})">Remove</button>
+`;
+cartItemsContainer.appendChild(itemDiv);
+});
+}
+
+function changeQuantity(index, delta) {
+const item = cart[index];
+item.quantity += delta;
+
+if (item.quantity <= 0) {
+removeItem(index);
+} else {
+// Adjust total based on the change in quantity
+total += item.price * delta;
+}
+updateCartDisplay();
+}
+
+function removeItem(index) {
+const item = cart[index];
+total -= item.price * item.quantity; // Subtract the total price of the item
+cart.splice(index, 1); // Remove item from cart
+updateCartDisplay();
+}
+
+function toggleCartMediumBox() {
+const cartBoxMedium = document.getElementById('cart-box-medium');
+cartBoxMedium.classList.toggle('active');
+}
+
+document.getElementById('cart-box').addEventListener('click', function() {
+toggleCartMediumBox();
+});
+
+function buyNow() {
+// Get the total cart amount
+const totalAmount = total.toFixed(2); // Assuming 'total' is your cart total
+
+// Redirect to qr.html with the total as a query parameter
+window.location.href = `qr.html?total=${totalAmount}`;
+}
+</script>
+
+</body>
+</html>

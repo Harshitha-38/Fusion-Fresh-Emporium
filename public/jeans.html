@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Jeans</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product-item {
+            background-color: white;
+            padding: 20px;
+
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .product-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .product-item p {
+            font-size: 14px;
+            color: #777;
+        }
+        .product-item button {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .product-item button:hover {
+            background-color: #e68900;
+        }
+        .cart-box {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            background-color: black;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .cart-icon {
+            margin-right: 5px;
+        }
+        .cart-count {
+            background-color: red;
+            border-radius: 50%;
+            padding: 3px 7px;
+            font-size: 14px;
+        }
+        .cart-box-medium {
+            display: none;
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            z-index: 2000;
+            transition: all 0.3s ease-in-out;
+        }
+        .cart-box-medium.active {
+            display: block;
+        }
+        .cart-box-medium h2 {
+            margin-top: 0;
+        }
+        .cart-box-medium .close-cart {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+            color: #aaa;
+        }
+        .cart-box-medium .cart-item {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+        .buy-now-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .buy-now-btn:hover {
+            background-color: #218838;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Women's Jeans Collection</h1>
+    </div>
+
+    <div class="product-grid">
+        <!-- Adding 10 sample women's jeans products -->
+<div class="product-item">
+    <img src="https://m.media-amazon.com/images/I/61Hyf5H-urL._AC_UY350_.jpg" alt="Jean 1">
+    <h3>Jean 1</h3>
+    <p>$40.00</p>
+    <button onclick="addToCart('Jean 1', 40.00)">Add to Cart</button>
+</div>
+<div class="product-item">
+    <img src="https://www.samsoe.com/_next/image?url=https%3A%2F%2Fsamsoe.centracdn.net%2Fclient%2Fdynamic%2Fimages%2F13565_F23400141-CLR001556-10-2400.jpg&w=3840&q=75 " alt="Jean 2">
+    <h3>Jean 2</h3>
+    <p>$45.00</p>
+    <button onclick="addToCart('Jean 2', 45.00)">Add to Cart</button>
+</div>
+<div class="product-item">
+    <img src="https://cdn.bfab.com/_next/image?url=https%3A%2F%2Fadmin.bfab.me%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F083cf153f9c91806e1701964acf5d2a8%2Fj%2Fp%2Fjpg_52709&w=3840&q=90" alt="Jean 3">
+    <h3>Jean 3</h3>
+    <p>$35.00</p>
+    <button onclick="addToCart('Jean 3', 35.00)">Add to Cart</button>
+</div>
+<div class="product-item">
+    <img src="https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fa9%2F10%2Fa910ac9d196a7932f30da0fad10d372a7cbf994a.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]" alt="Jean 4">
+    <h3>Jean 4</h3>
+    <p>$50.00</p>
+    <button onclick="addToCart('Jean 4', 50.00)">Add to Cart</button>
+</div>
+<div class="product-item">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWPW-PiMMqTp28Lq3Jlncn6idq6qfREZO1QQ&s" alt="Jean 5">
+    <h3>Jean 5</h3>
+    <p>$42.00</p>
+    <button onclick="addToCart('Jean 5', 42.00)">Add to Cart</button>
+</div>
+<div class="product-item">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnopGTz1VgxzA22XGrqPWbYgQfeis_J_rZHg&s" alt="Jean 6">
+    <h3>Jean 6</h3>
+    <p>$38.00</p>
+    <button onclick="addToCart('Jean 6', 38.00)">Add to Cart</button>
+</div>
+<div class="product-item">
+    <img src="https://algopix.com/products/_next/image?url=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FI%2F61zEBuRlyrL._SL400_.jpg&w=828&q=75" alt="Jean 7">
+    <h3>Jean 7</h3>
+    <p>$39.00</p>
+    <button onclick="addToCart('Jean 7', 39.00)">Add to Cart</button>
+</div>
+<div class="product-item">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxxHiho-gZZT657vcQNmdNCXkmvQhOg-3bnA&s" alt="Jean 8">
+    <h3>Jean 8</h3>
+    <p>$37.00</p>
+    <button onclick="addToCart('Jean 8', 37.00)">Add to Cart</button>
+</div>
+<div class="product-item">
+    <img src="https://assets.vogue.com/photos/63404617eb489f503840d766/3:4/w_748%2Cc_limit/slide_4.jpg" alt="Jean 9">
+    <h3>Jean 9</h3>
+    <p>$48.00</p>
+    <button onclick="addToCart('Jean 9', 48.00)">Add to Cart</button>
+</div>
+<div class="product-item">
+    <img src="https://www.samsoe.com/_next/image?url=https%3A%2F%2Fsamsoe.centracdn.net%2Fclient%2Fdynamic%2Fimages%2F15457_49b5e8c094-m24200003-clr001693-10-2400.jpg&w=3840&q=75" alt="Jean 10">
+    <h3>Jean 10</h3>
+    <p>$43.00</p>
+    <button onclick="addToCart('Jean 10', 43.00)">Add to Cart</button>
+</div>
+
+        </div>
+    </div>
+    <div class="cart-box" id="cart-box">
+        <span class="cart-icon">🛒</span>
+        Cart <span class="cart-count" id="cart-count">0</span>
+    </div>
+
+    <div class="cart-box-medium" id="cart-box-medium">
+        <span class="close-cart" onclick="toggleCartMediumBox()">&times;</span>
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <h3>Total: $<span id="total-price">0.00</span></h3>
+        <!-- Added Buy Now Button -->
+        <button class="buy-now-btn" onclick="buyNow()">Buy Now</button>
+        
+        
+    </div>
+
+    <script>
+let cart = [];
+let total = 0;
+
+function addToCart(itemName, itemPrice) {
+const existingItem = cart.find(item => item.name === itemName);
+
+if (existingItem) {
+    // If item already in cart, increment quantity
+    existingItem.quantity++;
+} else {
+    // If item is new, add to cart with quantity of 1
+    const item = {
+        name: itemName,
+        price: itemPrice,
+        quantity: 1 // Initial quantity set to 1
+    };
+    cart.push(item);
+}
+
+total += itemPrice; // Add price to total
+updateCartDisplay();
+}
+
+function updateCartDisplay() {
+document.getElementById('cart-count').innerText = cart.length;
+document.getElementById('total-price').innerText = total.toFixed(2);
+
+const cartItemsContainer = document.getElementById('cart-items');
+cartItemsContainer.innerHTML = ''; // Clear existing items
+
+cart.forEach((item, index) => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'cart-item';
+    itemDiv.innerHTML = `
+        <span>${item.name} - $${item.price.toFixed(2)} (Qty: <span id="quantity-${index}">${item.quantity}</span>)</span>
+        <button onclick="changeQuantity(${index}, 1)">+</button>
+        <button onclick="changeQuantity(${index}, -1)">-</button>
+        <button onclick="removeItem(${index})">Remove</button>
+    `;
+    cartItemsContainer.appendChild(itemDiv);
+});
+}
+
+function changeQuantity(index, delta) {
+const item = cart[index];
+item.quantity += delta;
+
+if (item.quantity <= 0) {
+    removeItem(index);
+} else {
+    // Adjust total based on the change in quantity
+    total += item.price * delta;
+}
+updateCartDisplay();
+}
+
+function removeItem(index) {
+const item = cart[index];
+total -= item.price * item.quantity; // Subtract the total price of the item
+cart.splice(index, 1); // Remove item from cart
+updateCartDisplay();
+}
+
+function toggleCartMediumBox() {
+const cartBoxMedium = document.getElementById('cart-box-medium');
+cartBoxMedium.classList.toggle('active');
+}
+
+document.getElementById('cart-box').addEventListener('click', function() {
+toggleCartMediumBox();
+});
+
+function buyNow() {
+// Get the total cart amount
+const totalAmount = total.toFixed(2); // Assuming 'total' is your cart total
+
+// Redirect to qr.html with the total as a query parameter
+window.location.href = `qr.html?total=${totalAmount}`;
+}
+    </script>
+
+</body>
+</html>

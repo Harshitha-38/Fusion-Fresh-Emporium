@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            width: 100%;
+        }
+
+        /* Main Styles */
+        main {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            margin: 20px;
+        }
+
+        /* Link Styles */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #45a049;
+        }
+
+        /* Payment Amount and ID Styles */
+        #payment-amount, #payment-id {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Payment Successful!</h1>
+    </header>
+    <main>
+        <p>Thank you for your payment of ₹<span id="payment-amount"></span>.</p>
+        <p>Your payment ID is <strong id="payment-id"></strong></p>
+        <p>Your order will be processed shortly.</p>
+        <a href="home.html">Return to Home</a>
+    </main>
+
+    <script>
+        // Extract the total and payment ID from URL and display it
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cartTotal = urlParams.get('total');
+            const paymentId = urlParams.get('payment_id');
+            
+            document.getElementById('payment-amount').textContent = cartTotal;
+            document.getElementById('payment-id').textContent = paymentId;
+        });
+    </script>
+</body>
+</html>

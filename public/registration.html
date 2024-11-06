@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GroveMix Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url("https://images.pexels.com/photos/110325/pexels-photo-110325.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+            background-size: cover;
+        }
+
+        .container {
+            width: 400px; /* Increased width */
+            padding: 30px; /* Increased padding for more space */
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 5px; /* Added rounded corners for a softer look */
+        }
+
+        .container h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .container input[type="text"],
+        .container input[type="password"],
+        .container input[type="email"],
+        .container input[type="number"],
+        .container input[type="select"] 
+        {
+            width: 100%;
+            padding: 12px; /* Increased padding for better input space */
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .container input[type="submit"] {
+            width: 100%;
+            padding: 12px; /* Increased padding for better button size */
+            background-color: orange;
+            border: 1px solid #a88734;
+            color: #111;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .container input[type="submit"]:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container p {
+            margin: 15px 0;
+            font-size: 12px;
+        }
+
+        .container a {
+            color: #0073bb;
+            text-decoration: none;
+        }
+
+        .container a:hover {
+            text-decoration: underline;
+        }
+        .container input,
+        .container select,
+        .container textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GroveMix</h1>
+        <h2>Create your account</h2>
+        <form id="registrationForm">
+            <input type="text" id="names" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="number" id="mobilenumber"  placeholder="mobilenumber" required>
+            <input type="text" id="pincode" placeholder="pincode" maxlength="6" pattern="\d{6}" title="Please enter a valid 6-digit pincode" required>
+            <input type="text" id="address"  placeholder="address" required>
+            <input type="text" id="city" placeholder="city" required>
+            <select id="state" placeholder="state" required>
+                <option value="">Choose a state</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="andhra pradesh">andhra pradesh</option>
+                <option value="cherukupalli">cherukupalli</option>
+                
+            </select>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <input type="submit" value="Register">
+        </form>
+        <h1 id="error-message"></h1>
+        <p>By creating an account, you agree to GroveMix's <a href="#">Conditions of Use</a> and <a href="#">Privacy Notice</a>.</p>
+        <p><a href="index.html">Already have an account? Sign in</a></p>
+    </div>
+
+<script src="./signup.js"></script>
+</body>
+</html>

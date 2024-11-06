@@ -1,0 +1,768 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>eCommerce Frontend</title>
+        <style>
+            /* Existing styles */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            .main-content {
+                padding: 20px;
+                background-color: #0b0505;
+                width: 100%;
+            }
+            .header {
+                background-color: #ff9800;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+            }
+            .header1 {
+                background-color: #ff9800;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+            }
+            .horizontal-navbar {
+                display: flex;
+                justify-content: center;
+                background-color: #f9f6f6;
+                padding: 10px 0;
+                margin-top: 10px;
+                flex-wrap: wrap;
+            }
+            .horizontal-navbar a {
+                padding: 10px 15px;
+                color: rgb(5, 5, 5);
+                text-decoration: none;
+            }
+            .horizontal-navbar a:hover {
+                background-color: #575757;
+            }
+            .carousel-container {
+                position: relative;
+                width: 100%;
+                max-width: 1000px;
+                margin: 20px auto;
+                overflow: hidden;
+                border-radius: 10px;
+            }
+            .carousel-slide {
+                display: flex;
+                transition: transform 0.4s ease-in-out;
+            }
+            .carousel-slide img {
+                width: 100%;
+                border-radius: 10px;
+            }
+            .carousel-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(0, 0, 0, 0.5);
+                color: #fff;
+                border: none;
+                font-size: 24px;
+                padding: 10px;
+                cursor: pointer;
+                z-index: 1000;
+            }
+            .prev-btn {
+                left: 10px;
+            }
+            .next-btn {
+                right: 10px;
+            }
+            .floating-navbar {
+    display: none;
+    position: fixed;
+    top: 50%; /* Vertically center */
+    left: 50%; /* Horizontally center */
+    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center; /* Center text horizontally */
+}
+
+.floating-navbar a {
+    display: block;
+    padding: 12px 20px; /* Increased padding for a larger clickable area */
+    font-size: 18px; /* Increased font size for better visibility */
+    color: #444;
+    text-decoration: none;
+    margin-bottom: 10px; /* Add space between links */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+.floating-navbar a:hover {
+    background-color: #ff9800; /* Highlight link on hover */
+    color: white; /* Change text color on hover */
+}
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+                margin-top: 20px;
+            }
+            .product-item {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+            .product-item img {
+                max-width: 100%;
+                height: auto;
+                border-bottom: 1px solid #ddd;
+                margin-bottom: 10px;
+            }
+            .product-item h3 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+            .product-item p {
+                font-size: 14px;
+                color: #777;
+            }
+            .product-item button {
+                background-color: #ff9800;
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .product-item button:hover {
+                background-color: #e68900;
+            }
+            .cart-box {
+                position: fixed;
+                right: 20px;
+                top: 20px;
+                background-color: black;
+                color: rgb(16, 226, 20);
+                padding: 10px 15px;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                font-size: 20px;
+                cursor: pointer;
+                z-index: 1000;
+            }
+            .cart-icon {
+                margin-right: 5px;
+            }
+            .cart-count {
+                background-color: red;
+                border-radius: 50%;
+                padding: 3px 7px;
+                font-size: 14px;
+            }
+            .cart-box-medium {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;            /* Width of the cart box */
+        height: auto;            /* Height will adjust automatically */
+        max-height: 80%;         /* Limit max height to avoid overflow */
+        overflow-y: auto;        /* Allow vertical scrolling if needed */
+        padding: 20px;
+        background: linear-gradient(145deg, #eeebeb, #f40606);  /* Gradient background */
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), -10px -10px 20px rgba(255, 255, 255, 0.5);  /* Soft shadow */
+        border-radius: 10px;
+        z-index: 2000;
+        transition: all 0.3s ease-in-out;
+        text-align: center;      /* Center text horizontally */
+    }
+
+            .cart-box-medium.active {
+                display: block;
+            }
+            .cart-box-medium h2 {
+        margin-top: 0;
+        font-size: 24px;         /* Larger font size for heading */
+        color: #333;             /* Dark text color */
+        font-weight: 600;        /* Bold heading */
+    }
+            .cart-box-medium .close-cart {
+                float: right;
+                cursor: pointer;
+                font-size: 20px;
+                color: #aaa;
+            }
+            .cart-box-medium .cart-item {
+                border-bottom: 1px solid #ddd;
+                margin-bottom: 10px;
+                padding-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .cart-item button {
+        background-color: #ff9800;  /* Button color */
+        color: white;
+        padding: 8px 12px;           /* Increased padding */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 5px;
+        font-size: 14px;
+        transition: background-color 0.3s, transform 0.3s;  /* Smooth hover transition */
+    }
+    .cart-item button:hover {
+        background-color: #e68900;   /* Darker shade on hover */
+        transform: scale(1.05);       /* Slightly grow button on hover */
+    }
+            .buy-now-btn {
+        width: 100%;
+        padding: 12px;                /* Increased padding */
+        background-color: #28a745;    /* Green color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 16px;              /* Larger font size */
+        transition: background-color 0.3s, transform 0.3s;  /* Smooth hover transition */
+    }
+    .buy-now-btn:hover {
+        background-color: #218838;     /* Darker green on hover */
+        transform: scale(1.05);        /* Slightly grow button on hover */
+    }
+    /* Close button */
+    .close-cart {
+        float: right;
+        cursor: pointer;
+        font-size: 24px;              /* Larger close button */
+        color: #aaa;
+        transition: color 0.3s;       /* Smooth color transition */
+    }
+
+    .close-cart:hover {
+        color: #ff0000;               /* Change color on hover */
+    }
+            /* Item quantity styling */
+            .item-controls {
+                display: flex;
+                align-items: center;
+            }
+            .item-quantity {
+                display: flex;
+                align-items: center;
+                margin-left: 10px;
+            }
+            /* Quantity input field */
+            .item-quantity input {
+                width: 40px;
+                text-align: center;
+                margin: 0 5px; /* Space around the input */
+            }
+        
+        
+
+        </style>
+    </head>
+    <body>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Welcome to Our Fusion Fresh Emporium</h1>
+                
+            </div>
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="https://assets-static.invideo.io/images/large/Creative_Clothing_Advertisement_Ideas_To_Boost_Sales_revised_3_1_cefa9cda88.png" alt="Creative Clothing Ad">
+            <!-- Updated second image with the new link -->
+            <img src="https://www.bloggerteck.com/wp-content/uploads/2020/12/clothingaffiliateprograms-1024x576.jpg" alt="Clothing Affiliate Programs">
+            <img src="https://via.placeholder.com/1000x300?text=Advert+3" alt="Advert 3">
+            <img src="https://via.placeholder.com/1000x300?text=Advert+4" alt="Advert 4">
+        </div>
+        <button class="carousel-nav prev-btn">&#10094;</button>
+        <button class="carousel-nav next-btn">&#10095;</button>
+    </div>
+
+
+
+
+
+            <div class="horizontal-navbar">
+                
+                <a href="#" id="electronics-link">Electronics</a>
+                <a href="#" id="clothing-link">Clothing</a>
+                <a href="#" id="groceries-link">Groceries</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+
+            </div>
+
+
+            <div class="floating-navbar" id="electronics-navbar">
+                <a href="#" data-item="mobile.html">Mobile Phones</a>
+                <a href="#" data-item="laptops.html">Laptops</a>
+                   <a href="#" data-item="headphones.html">Headphones</a>
+                <a href="#" data-item="cameras.html">Cameras</a>
+                <a href="#" data-item="televisions.html">Televisions</a>
+            </div>
+
+            <div class="floating-navbar" id="clothing-navbar">
+                <a href="#" data-item="men-clothing.html" id="men-clothing-link">Men Clothing</a>
+                <a href="#" data-item="women-clothing.html" id="women-clothing-link">Women Clothing</a>
+            </div>
+
+            <!-- New Navbar for Men Clothing Categories -->
+            <div class="floating-navbar" id="men-clothing-navbar">
+                <a href="#" data-item="t-shirt.html">T-shirts</a>
+                <a href="#" data-item="pants.html">Pants</a>
+                <a href="#" data-item="shirts.html">Shirts</a>
+            </div>
+
+            <!-- New Navbar for Women Clothing Categories -->
+            <div class="floating-navbar" id="women-clothing-navbar">
+                <a href="#" data-item="jeans.html">Jeans</a>
+                <a href="#" data-item="sarees.html">Sarees</a>
+                <a href="#" data-item="kurtas.html">Kurtas</a>
+            </div>
+            <div class="floating-navbar" id="groceries-navbar">
+                <a href="#" data-item="vegetables.html">Vegetables</a>
+                <a href="#" data-item="kitchen.html">Kitchen</a>
+                <a href="#" data-item="beauty-products.html">Beauty Products</a>
+            </div>
+            <div class="header">
+                <h1>New Arrivals</h1>
+            </div>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="https://th.bing.com/th/id/OIP.rGLqHnPIYhd6TrbFGXW3EwHaJ3?rs=1&pid=ImgDetMain" alt="New Arrival 1">
+                    <h3>Henley T-shirt</h3>
+                    <p>$28.00</p>
+                    <button onclick="addToCart('Henley T-shirt', 28.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://cdn.shopify.com/s/files/1/0981/8178/files/buttonm-down-collar-shirt-square.jpg?v=1581458682" alt="New Arrival 2">
+                    <h3>Casual Button-Up</h3>
+                    <p>$30.00</p>
+                    <button onclick="addToCart('Casual Button-Up', 30.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://specials-images.forbesimg.com/imageserve/5e3705b4f133f400076b6ef9/960x0.jpg?cropX1=140&cropX2=586&cropY1=193&cropY2=861" alt="New Arrival 3">
+                    <h3>Graphic Tee</h3>
+                    <p>$25.00</p>
+                    <button onclick="addToCart('Graphic Tee', 25.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://www.vampal.co.uk/content/res/large/l102/0010260_wm.jpeg" alt="New Arrival 4">
+                    <h3>Summer Dress</h3>
+                    <p>$35.00</p>
+                    <button onclick="addToCart('Summer Dress', 35.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/51yQidO2fML._AC_UL1001_.jpg" alt="New Arrival 5">
+                    <h3>Lightweight Jacket</h3>
+                    <p>$45.00</p>
+                    <button onclick="addToCart('Lightweight Jacket', 45.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://improb.com/wp-content/uploads/2019/09/Best-Classic-Sneakers-for-Men.jpg" alt="New Arrival 6">
+                    <h3>Classic Sneakers</h3>
+                    <p>$60.00</p>
+                    <button onclick="addToCart('Classic Sneakers', 60.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://th.bing.com/th/id/OIP.jARGdpSUiFwdgTpWPRYGEwHaJQ?rs=1&pid=ImgDetMain" alt="New Arrival 7">
+                    <h3>Sporty Hoodie</h3>
+                    <p>$40.00</p>
+                    <button onclick="addToCart('Sporty Hoodie', 40.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://www.comfortnerd.com/wp-content/uploads/2017/11/amazonessentialwomensweat.jpg" alt="New Arrival 8">
+                    <h3>Comfortable Sweatpants</h3>
+                    <p>$35.00</p>
+                    <button onclick="addToCart('Comfortable Sweatpants', 35.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://mannerjax.files.wordpress.com/2019/01/f923ff192cb698a2d01b6ce2b90d4029.jpg" alt="New Arrival 9">
+                    <h3>Trendy Denim Jacket</h3>
+                    <p>$50.00</p>
+                    <button onclick="addToCart('Trendy Denim Jacket', 50.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://th.bing.com/th/id/OIP.OjZ2GmtkaXMswHmfsYvCNwHaHa?rs=1&pid=ImgDetMain" alt="New Arrival 10">
+                    <h3>Casual Sneakers</h3>
+                    <p>$55.00</p>
+                    <button onclick="addToCart('Casual Sneakers', 55.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://th.bing.com/th/id/OIP.wFeSoBHTyigAcaapPnLiPwHaHa?rs=1&pid=ImgDetMain" alt="New Arrival 11">
+                    <h3>Stylish Sunglasses</h3>
+                    <p>$20.00</p>
+                    <button onclick="addToCart('Stylish Sunglasses', 20.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.styleoholic.com/2017/03/08-a-white-long-sleeve-a-bold-floral-skirt-and-nude-heels.jpg" alt="New Arrival 12">
+                    <h3>Floral Skirt</h3>
+                    <p>$30.00</p>
+                    <button onclick="addToCart('Floral Skirt', 30.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://th.bing.com/th/id/OIP.110xDzE4l9hwYzG_2RVZLgHaJ4?w=1500&h=2000&rs=1&pid=ImgDetMain" alt="New Arrival 13">
+                    <h3>Graphic Long Sleeve</h3>
+                    <p>$28.00</p>
+                    <button onclick="addToCart('Graphic Long Sleeve', 28.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/37/1505496795-eddie-bauer-sun-valley-down-parka.jpg?crop=1.0xw:1xh;center,top&resize=768:*" alt="New Arrival 14">
+                    <h3>Warm Winter Coat</h3>
+                    <p>$75.00</p>
+                    <button onclick="addToCart('Warm Winter Coat', 75.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://th.bing.com/th/id/OIP.6zn46D24aVPFdRmdKPoiJAHaLG?rs=1&pid=ImgDetMain" alt="New Arrival 15">
+                    <h3>Beachwear</h3>
+                    <p>$45.00</p>
+                    <button onclick="addToCart('Beachwear', 45.00)">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://img1.etsystatic.com/000/0/5650781/il_fullxfull.300396223.jpg" alt="New Arrival 16">
+                    <h3>Classic Flip-Flops</h3>
+                    <p>$1.00</p>
+                    <button onclick="addToCart('Classic Flip-Flops', 1.00)">Add to Cart</button>
+                </div>
+                
+                    <h2>New Arrivals</h2>
+                </div>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="https://th.bing.com/th/id/OIP.rGLqHnPIYhd6TrbFGXW3EwHaJ3?rs=1&pid=ImgDetMain" alt="New Arrival 1">
+                        <h3>Henley T-shirt</h3>
+                        <p>$28.00</p>
+                        <button onclick="addToCart('Henley T-shirt', 28.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://cdn.shopify.com/s/files/1/0981/8178/files/buttonm-down-collar-shirt-square.jpg?v=1581458682" alt="New Arrival 2">
+                        <h3>Casual Button-Up</h3>
+                        <p>$30.00</p>
+                        <button onclick="addToCart('Casual Button-Up', 30.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://specials-images.forbesimg.com/imageserve/5e3705b4f133f400076b6ef9/960x0.jpg?cropX1=140&cropX2=586&cropY1=193&cropY2=861" alt="New Arrival 3">
+                        <h3>Graphic Tee</h3>
+                        <p>$25.00</p>
+                        <button onclick="addToCart('Graphic Tee', 25.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://www.vampal.co.uk/content/res/large/l102/0010260_wm.jpeg" alt="New Arrival 4">
+                        <h3>Summer Dress</h3>
+                        <p>$35.00</p>
+                        <button onclick="addToCart('Summer Dress', 35.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://images-na.ssl-images-amazon.com/images/I/51yQidO2fML._AC_UL1001_.jpg" alt="New Arrival 5">
+                        <h3>Lightweight Jacket</h3>
+                        <p>$45.00</p>
+                        <button onclick="addToCart('Lightweight Jacket', 45.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://improb.com/wp-content/uploads/2019/09/Best-Classic-Sneakers-for-Men.jpg" alt="New Arrival 6">
+                        <h3>Classic Sneakers</h3>
+                        <p>$60.00</p>
+                        <button onclick="addToCart('Classic Sneakers', 60.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://th.bing.com/th/id/OIP.jARGdpSUiFwdgTpWPRYGEwHaJQ?rs=1&pid=ImgDetMain" alt="New Arrival 7">
+                        <h3>Sporty Hoodie</h3>
+                        <p>$40.00</p>
+                        <button onclick="addToCart('Sporty Hoodie', 40.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://www.comfortnerd.com/wp-content/uploads/2017/11/amazonessentialwomensweat.jpg" alt="New Arrival 8">
+                        <h3>Comfortable Sweatpants</h3>
+                        <p>$35.00</p>
+                        <button onclick="addToCart('Comfortable Sweatpants', 35.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://mannerjax.files.wordpress.com/2019/01/f923ff192cb698a2d01b6ce2b90d4029.jpg" alt="New Arrival 9">
+                        <h3>Trendy Denim Jacket</h3>
+                        <p>$50.00</p>
+                        <button onclick="addToCart('Trendy Denim Jacket', 50.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://th.bing.com/th/id/OIP.OjZ2GmtkaXMswHmfsYvCNwHaHa?rs=1&pid=ImgDetMain" alt="New Arrival 10">
+                        <h3>Casual Sneakers</h3>
+                        <p>$55.00</p>
+                        <button onclick="addToCart('Casual Sneakers', 55.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://th.bing.com/th/id/OIP.wFeSoBHTyigAcaapPnLiPwHaHa?rs=1&pid=ImgDetMain" alt="New Arrival 11">
+                        <h3>Stylish Sunglasses</h3>
+                        <p>$20.00</p>
+                        <button onclick="addToCart('Stylish Sunglasses', 20.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://i.styleoholic.com/2017/03/08-a-white-long-sleeve-a-bold-floral-skirt-and-nude-heels.jpg" alt="New Arrival 12">
+                        <h3>Floral Skirt</h3>
+                        <p>$30.00</p>
+                        <button onclick="addToCart('Floral Skirt', 30.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://th.bing.com/th/id/OIP.110xDzE4l9hwYzG_2RVZLgHaJ4?w=1500&h=2000&rs=1&pid=ImgDetMain" alt="New Arrival 13">
+                        <h3>Graphic Long Sleeve</h3>
+                        <p>$28.00</p>
+                        <button onclick="addToCart('Graphic Long Sleeve', 28.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/37/1505496795-eddie-bauer-sun-valley-down-parka.jpg?crop=1.0xw:1xh;center,top&resize=768:*" alt="New Arrival 14">
+                        <h3>Warm Winter Coat</h3>
+                        <p>$75.00</p>
+                        <button onclick="addToCart('Warm Winter Coat', 75.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://th.bing.com/th/id/OIP.6zn46D24aVPFdRmdKPoiJAHaLG?rs=1&pid=ImgDetMain" alt="New Arrival 15">
+                        <h3>Beachwear</h3>
+                        <p>$45.00</p>
+                        <button onclick="addToCart('Beachwear', 45.00)">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://img1.etsystatic.com/000/0/5650781/il_fullxfull.300396223.jpg" alt="New Arrival 16">
+                        <h3>Classic Flip-Flops</h3>
+                        <p>$1.00</p>
+                        <button onclick="addToCart('Classic Flip-Flops', 15.00)">Add to Cart</button>
+                    </div>
+                
+                
+        
+            
+
+
+            <div class="cart-box" id="cart-box">
+                <span class="cart-icon">🛒</span>
+                Cart <span class="cart-count" id="cart-count">0</span>
+            </div>
+        
+            <div class="cart-box-medium" id="cart-box-medium">
+                <span class="close-cart" onclick="toggleCartMediumBox()">&times;</span>
+                <h2>Your Cart</h2>
+                <div id="cart-items"></div>
+                <h3>Total: $<span id="total-price">0.00</span></h3>
+                <!-- Added Buy Now Button -->
+                <button class="buy-now-btn" onclick="buyNow()">Buy Now</button>
+                
+                
+            </div>
+
+            <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(itemName, itemPrice) {
+        const existingItem = cart.find(item => item.name === itemName);
+
+        if (existingItem) {
+            // If item already in cart, increment quantity
+            existingItem.quantity++;
+        } else {
+            // If item is new, add to cart with quantity of 1
+            const item = {
+                name: itemName,
+                price: itemPrice,
+                quantity: 1 // Initial quantity set to 1
+            };
+            cart.push(item);
+        }
+
+        total += itemPrice; // Add price to total
+        updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+        document.getElementById('cart-count').innerText = cart.length;
+        document.getElementById('total-price').innerText = total.toFixed(2);
+
+        const cartItemsContainer = document.getElementById('cart-items');
+        cartItemsContainer.innerHTML = ''; // Clear existing items
+
+        cart.forEach((item, index) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'cart-item';
+            itemDiv.innerHTML = `
+                <span>${item.name} - $${item.price.toFixed(2)} (Qty: <span id="quantity-${index}">${item.quantity}</span>)</span>
+                <button onclick="changeQuantity(${index}, 1)">+</button>
+                <button onclick="changeQuantity(${index}, -1)">-</button>
+                <button onclick="removeItem(${index})">Remove</button>
+            `;
+            cartItemsContainer.appendChild(itemDiv);
+        });
+    }
+
+    function changeQuantity(index, delta) {
+        const item = cart[index];
+        item.quantity += delta;
+
+        if (item.quantity <= 0) {
+            removeItem(index);
+        } else {
+            // Adjust total based on the change in quantity
+            total += item.price * delta;
+        }
+        updateCartDisplay();
+    }
+
+    function removeItem(index) {
+        const item = cart[index];
+        total -= item.price * item.quantity; // Subtract the total price of the item
+        cart.splice(index, 1); // Remove item from cart
+        updateCartDisplay();
+    }
+
+    function toggleCartMediumBox() {
+        const cartBoxMedium = document.getElementById('cart-box-medium');
+        cartBoxMedium.classList.toggle('active');
+    }
+
+    document.getElementById('cart-box').addEventListener('click', function() {
+        toggleCartMediumBox();
+    });
+
+    function buyNow() {
+    // Get the total cart amount
+    const totalAmount = total.toFixed(2); // Assuming 'total' is your cart total
+    
+    // Redirect to qr.html with the total as a query parameter
+    window.location.href = `qr.html?total=${totalAmount}`;
+}
+
+
+            const electronicsLink = document.getElementById('electronics-link');
+            const electronicsNavbar = document.getElementById('electronics-navbar');
+            const clothingLink = document.getElementById('clothing-link');
+            const clothingNavbar = document.getElementById('clothing-navbar');
+            const menClothingLink = document.getElementById('men-clothing-link');
+            const menClothingNavbar = document.getElementById('men-clothing-navbar');
+            const womenClothingLink = document.getElementById('women-clothing-link');
+            const womenClothingNavbar = document.getElementById('women-clothing-navbar');
+
+            electronicsLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                electronicsNavbar.style.display = electronicsNavbar.style.display === 'none' || electronicsNavbar.style.display === '' ? 'block' : 'none';
+            });
+
+            clothingLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                clothingNavbar.style.display = clothingNavbar.style.display === 'none' || clothingNavbar.style.display === '' ? 'block' : 'none';
+            });
+
+            menClothingLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                menClothingNavbar.style.display = menClothingNavbar.style.display === 'none' || menClothingNavbar.style.display === '' ? 'block' : 'none';
+            });
+
+            womenClothingLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                womenClothingNavbar.style.display = womenClothingNavbar.style.display === 'none' || womenClothingNavbar.style.display === '' ? 'block' : 'none';
+            });
+
+            const electronicsItems = electronicsNavbar.querySelectorAll('a');
+    electronicsItems.forEach(item => {
+        item.addEventListener('click', function(event) {
+            event.preventDefault();
+            const itemType = item.getAttribute('data-item');
+            if (itemType === "laptop.html") {
+                loadLaptops();
+            } else if (itemType === "headphones.html") {
+                loadHeadphones();
+            } else if (itemType === "cameras.html") {
+                window.location.href = "cameras.html"; // Direct navigation
+            } else {
+                window.location.href = itemType;
+            }
+        });
+    });
+            const clothingItems = clothingNavbar.querySelectorAll('a');
+            clothingItems.forEach(item => {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const itemType = item.getAttribute('data-item');
+                    if (itemType === "men-clothing.html") {
+                        loadMenClothing();
+                    } else if (itemType === "women-clothing.html") {
+                        loadWomenClothing();
+                    } else {
+                        window.location.href = itemType;
+                    }
+
+                });
+            });
+            const menClothingItems = menClothingNavbar.querySelectorAll('a');
+            menClothingItems.forEach(item => {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const itemType = item.getAttribute('data-item');
+                    window.location.href = itemType;
+                });
+            });
+            const womenClothingItems = womenClothingNavbar.querySelectorAll('a');
+            womenClothingItems.forEach(item => {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const itemType = item.getAttribute('data-item');
+                    window.location.href = itemType;
+                });
+            });
+            // Carousel script
+            const carouselContainer = document.getElementById('carousel-container');
+            const carouselSlide = document.querySelector('.carousel-slide');
+            const carouselImages = document.querySelectorAll('.carousel-slide img');
+
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+
+            let counter = 0;
+            const size = carouselImages[0].clientWidth;
+
+            nextBtn.addEventListener('click', () => {
+                if (counter >= carouselImages.length - 1) counter = -1;
+                carouselSlide.style.transition = "transform 0.4s ease-in-out";
+                counter++;
+                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (counter <= 0) counter = carouselImages.length;
+                carouselSlide.style.transition = "transform 0.4s ease-in-out";
+                counter--;
+                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+            });
+            const groceriesLink = document.getElementById('groceries-link');
+const groceriesNavbar = document.getElementById('groceries-navbar');
+
+groceriesLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    groceriesNavbar.style.display = groceriesNavbar.style.display === 'none' || groceriesNavbar.style.display === '' ? 'block' : 'none';
+});
+
+const groceriesItems = groceriesNavbar.querySelectorAll('a');
+groceriesItems.forEach(item => {
+    item.addEventListener('click', function(event) {
+        event.preventDefault();
+        const itemType = item.getAttribute('data-item');
+        window.location.href = itemType;  // Navigate to the appropriate page
+    });
+});
+
+        </script>
+
+    </body>
+    </html>

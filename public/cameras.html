@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Kurtas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .product-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .product-item p {
+            font-size: 14px;
+            color: #777;
+        }
+        .product-item button {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .product-item button:hover {
+            background-color: #e68900;
+        }
+        .cart-box {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            background-color: black;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .cart-icon {
+            margin-right: 5px;
+        }
+        .cart-count {
+            background-color: red;
+            border-radius: 50%;
+            padding: 3px 7px;
+            font-size: 14px;
+        }
+        .cart-box-medium {
+            display: none;
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            z-index: 2000;
+            transition: all 0.3s ease-in-out;
+        }
+        .cart-box-medium.active {
+            display: block;
+        }
+        .cart-box-medium h2 {
+            margin-top: 0;
+        }
+        .cart-box-medium .close-cart {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+            color: #aaa;
+        }
+        .cart-box-medium .cart-item {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+        .buy-now-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .buy-now-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>cameras</h1>
+    </div>
+    <div class="product-grid" id="product-grid">
+      <div class="product-item">
+          <img src="https://th.bing.com/th/id/OIP.bW1oaXWqdC-uQC1ur5b1kAAAAA?w=273&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Canon EOS R5">
+          <h3>Canon EOS R5</h3>
+          <p>$3899.00</p>
+          <button onclick="addToCart('Canon EOS R5', 3899)">Add to Cart</button>
+      </div>
+      <div class="product-item">
+          <img src="https://th.bing.com/th/id/OIP.Ih2aW5MAKuqRKqzWazBMCAHaEm?w=279&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Sony A7 III">
+          <h3>Sony A7 III</h3>
+          <p>$1999.00</p>
+          <button onclick="addToCart('Sony A7 III', 1999)">Add to Cart</button>
+      </div>
+      <div class="product-item">
+          <img src="https://th.bing.com/th/id/OIP.ha43rtyfbUvgj7nbvAnd_wHaFa?rs=1&pid=ImgDetMain" alt="Fujifilm X-T4">
+          <h3>Fujifilm X-T4</h3>
+          <p>$1699.00</p>
+          <button onclick="addToCart('Fujifilm X-T4', 1699)">Add to Cart</button>
+      </div>
+      <div class="product-item">
+          <img src="https://th.bing.com/th/id/OIP.HfH3-H5X-s0ECr5xYyKkZwHaE8?rs=1&pid=ImgDetMain" alt="Panasonic Lumix S5">
+          <h3>Panasonic Lumix S5</h3>
+          <p>$1999.00</p>
+          <button onclick="addToCart('Panasonic Lumix S5', 1999)">Add to Cart</button>
+      </div>
+      <div class="product-item">
+          <img src="https://th.bing.com/th/id/OIP.HYtwjPJVQAqwzDogtRNBgQAAAA?rs=1&pid=ImgDetMain" alt="Olympus OM-D E-M1 Mark III">
+          <h3>Olympus OM-D E-M1 Mark III</h3>
+          <p>$1799.00</p>
+          <button onclick="addToCart('Olympus OM-D E-M1 Mark III', 1799)">Add to Cart</button>
+      </div>
+      <div class="product-item">
+          <img src="https://th.bing.com/th/id/OIP.0jJrABb3AHISVZpazn3u5AAAAA?rs=1&pid=ImgDetMain" alt="Pentax K-1 Mark II">
+          <h3>Pentax K-1 Mark II</h3>
+          <p>$1999.00</p>
+          <button onclick="addToCart('Pentax K-1 Mark II', 1999)">Add to Cart</button>
+      </div>
+      <div class="product-item">
+          <img src="https://th.bing.com/th/id/OIP.b9-lV_bizVvzXVLuMxiyHgHaHa?rs=1&pid=ImgDetMain" alt="GoPro HERO10">
+          <h3>GoPro HERO10</h3>
+          <p>$499.00</p>
+          <button onclick="addToCart('GoPro HERO10', 499)">Add to Cart</button>
+      </div>
+      <div class="product-item">
+          <img src="https://th.bing.com/th/id/OIP.Kk6HwcPKz-rejgn08jmtZAHaHa?w=195&h=195&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Sony ZV-E10">
+          <h3>Sony ZV-E10</h3>
+          <p>$698.00</p>
+          <button onclick="addToCart('Sony ZV-E10', 698)">Add to Cart</button>
+      </div>
+      <div class="product-item">
+          <img src="https://th.bing.com/th/id/OIP.75TKI94yrqBr580WuEzYSAHaE8?w=3262&h=2175&rs=1&pid=ImgDetMain" alt="Nikon D850">
+          <h3>Nikon D850</h3>
+          <p>$2999.00</p>
+          <button onclick="addToCart('Nikon D850', 2999)">Add to Cart</button>
+      </div>
+      <div class="product-item">
+          <img src="https://th.bing.com/th/id/OIP.OXJwA9zus2M0SfLQo2HbLAHaE8?rs=1&pid=ImgDetMain" alt="Canon EOS 90D">
+          <h3>Canon EOS 90D</h3>
+          <p>$1299.00</p>
+          <button onclick="addToCart('Canon EOS 90D', 1299)">Add to Cart</button>
+      </div>
+      
+
+
+      <div class="cart-box" id="cart-box">
+        <span class="cart-icon">🛒</span>
+        Cart <span class="cart-count" id="cart-count">0</span>
+    </div>
+
+    <div class="cart-box-medium" id="cart-box-medium">
+        <span class="close-cart" onclick="toggleCartMediumBox()">&times;</span>
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <h3>Total: $<span id="total-price">0.00</span></h3>
+        <!-- Added Buy Now Button -->
+        <button class="buy-now-btn" onclick="buyNow()">Buy Now</button>
+        
+        
+    </div>
+
+    <script>
+let cart = [];
+let total = 0;
+
+function addToCart(itemName, itemPrice) {
+const existingItem = cart.find(item => item.name === itemName);
+
+if (existingItem) {
+    // If item already in cart, increment quantity
+    existingItem.quantity++;
+} else {
+    // If item is new, add to cart with quantity of 1
+    const item = {
+        name: itemName,
+        price: itemPrice,
+        quantity: 1 // Initial quantity set to 1
+    };
+    cart.push(item);
+}
+
+total += itemPrice; // Add price to total
+updateCartDisplay();
+}
+
+function updateCartDisplay() {
+document.getElementById('cart-count').innerText = cart.length;
+document.getElementById('total-price').innerText = total.toFixed(2);
+
+const cartItemsContainer = document.getElementById('cart-items');
+cartItemsContainer.innerHTML = ''; // Clear existing items
+
+cart.forEach((item, index) => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'cart-item';
+    itemDiv.innerHTML = `
+        <span>${item.name} - $${item.price.toFixed(2)} (Qty: <span id="quantity-${index}">${item.quantity}</span>)</span>
+        <button onclick="changeQuantity(${index}, 1)">+</button>
+        <button onclick="changeQuantity(${index}, -1)">-</button>
+        <button onclick="removeItem(${index})">Remove</button>
+    `;
+    cartItemsContainer.appendChild(itemDiv);
+});
+}
+
+function changeQuantity(index, delta) {
+const item = cart[index];
+item.quantity += delta;
+
+if (item.quantity <= 0) {
+    removeItem(index);
+} else {
+    // Adjust total based on the change in quantity
+    total += item.price * delta;
+}
+updateCartDisplay();
+}
+
+function removeItem(index) {
+const item = cart[index];
+total -= item.price * item.quantity; // Subtract the total price of the item
+cart.splice(index, 1); // Remove item from cart
+updateCartDisplay();
+}
+
+function toggleCartMediumBox() {
+const cartBoxMedium = document.getElementById('cart-box-medium');
+cartBoxMedium.classList.toggle('active');
+}
+
+document.getElementById('cart-box').addEventListener('click', function() {
+toggleCartMediumBox();
+});
+
+function buyNow() {
+// Get the total cart amount
+const totalAmount = total.toFixed(2); // Assuming 'total' is your cart total
+
+// Redirect to qr.html with the total as a query parameter
+window.location.href = `qr.html?total=${totalAmount}`;
+}
+    </script>
+
+</body>
+</html>

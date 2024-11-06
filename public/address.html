@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            height: 80px;
+            resize: none;
+        }
+        .save-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #ff9800;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .save-btn:hover {
+            background-color: #e68900;
+        }
+        .summary-box {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .summary-box h3 {
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .summary-box p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Add a New Address</h1>
+    <form id="address-form">
+        <div class="form-group">
+            <label for="country">Country/Region</label>
+            <select id="country" name="country">
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="full-name">Full Name (First and Last Name)</label>
+            <input type="text" id="full-name" name="full-name" required>
+        </div>
+        <div class="form-group">
+            <label for="mobile-number">Mobile Number</label>
+            <input type="text" id="mobile-number" name="mobile-number" required>
+        </div>
+        <div class="form-group">
+            <label for="pincode">Pincode</label>
+            <input type="text" id="pincode" name="pincode" maxlength="6" pattern="\d{6}" title="Please enter a valid 6-digit pincode" required>
+        </div>
+        <div class="form-group">
+            <label for="address-line1">Flat, House No., Building, Company, Apartment</label>
+            <input type="text" id="address-line1" name="address-line1" required>
+        </div>
+        <div class="form-group">
+            <label for="address-line2">Area, Street, Sector, Village</label>
+            <input type="text" id="address-line2" name="address-line2" required>
+        </div>
+        <div class="form-group">
+            <label for="landmark">Landmark</label>
+            <input type="text" id="landmark" name="landmark">
+        </div>
+        <div class="form-group">
+            <label for="town-city">Town/City</label>
+            <input type="text" id="town-city" name="town-city" required>
+        </div>
+        <div class="form-group">
+            <label for="state">State</label>
+            <select id="state" name="state" required>
+                <option value="">Choose a state</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="andhra pradesh">andhra pradesh</option>
+                <option value="cherukupalli">cherukupalli</option>
+                
+            </select>
+        </div>
+        <button type="submit" class="save-btn">proceed to Payment
+
+        </button>
+
+    </form>
+</div>
+
+
+<script>
+
+    document.getElementById('address-form').addEventListener('submit', function (e) {
+        e.preventDefault();  // Prevent form submission (if it's not server-side)
+        alert('Address saved successfully!');
+        // Redirect to payment.html
+        window.location.href = "qr.html";  // Change to your actual file name if different
+    });
+
+</script>
+
+</body>
+</html>

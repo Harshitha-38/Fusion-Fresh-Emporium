@@ -1,0 +1,179 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling with Marble Background */
+body {
+    font-family: 'Lora', serif;
+    background-image: url('https://cdn.pixabay.com/photo/2022/09/21/17/02/blue-background-7470781_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header with Centered Heading and Right-Aligned Buttons */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: rgba(255, 255, 255, 0.85); /* Slight transparency for elegance */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header img {
+    height: 60px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: 700;
+    text-transform: uppercase;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-button {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 30px;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+    border: 1px solid #ccc;
+}
+
+.nav-button:hover {
+    background-color: #ffd700;
+    color: #fff;
+}
+
+/* Main Content Styling */
+main {
+    background-color: rgba(255, 255, 255, 0.95);
+    width: 60%;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #444;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.payment-image {
+    width: 100%;
+    max-height: 400px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+.payment-image, .net-banking-image {
+    width: 400px;   /* Set the desired width */
+    height: 400px;  /* Set the desired height */
+    object-fit: cover; /* Ensures the image scales correctly */
+    border-radius: 10px; /* Optional for rounded corners */
+}
+
+/* QR Code */
+#qr-code {
+    margin: 20px 0;
+    margin-left: 250px;
+}
+
+/* Cart Total and UPI Link */
+#cart-total {
+    font-size: 1.4rem;
+    margin: 20px 0;
+    font-weight: 600;
+    color: #444;
+}
+
+#upi-payment-link {
+    display: block;
+    background-color: #ffd700;
+    color: #fff;
+    padding: 15px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#upi-payment-link:hover {
+    background-color: #e0ac00;
+}
+
+/* Loading Bar */
+#loading-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    margin: 20px 0;
+    position: relative;
+    display: none;
+}
+
+#loading-bar {
+    height: 100%;
+    width: 0;
+    background-color: #ffd700;
+    border-radius: 15px;
+}
+
+#loading-percentage {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #444;
+    padding: 20px;
+    font-size: 1rem;
+}
+#upi-payment-link, #proceed-to-payment {
+    display: inline-block;
+    background-color: #ffd700; /* Gold color */
+    color:black;
+    padding: 15px 30px; /* Adjust padding as needed */
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-radius: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#upi-payment-link:hover, #proceed-to-payment:hover {
+    background-color: #e0ac00; /* Darker gold for hover effect */
+}
